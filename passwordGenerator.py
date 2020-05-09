@@ -22,3 +22,17 @@
 # 1. GET THE PASSWORD FROM THE USER
 # 2. CHECK IF IT IS STRONG
 # 3. PRINT RESULT
+
+# MAIN PROGRAM
+# IMPORTING MODULES
+import re
+import random
+import pyinputplus as pyip
+
+inputMenu = pyip.inputChoice(['1', '2', '3', 'PASSWORD GENERATOR', 'PASSWORD CHECKER', 'EXIT'], '1. PASSWORD GENERATOR\n2. PASSWORD CHECKER\n3. EXIT\n')
+
+while inputMenu != 'EXIT' or inputMenu != '3':
+    if inputMenu == 'PASSWORD GENERATOR' or inputMenu == '1':
+        # PASSWORD GENERATOR
+    elif inputMenu == 'PASSWORD CHECKER' or inputMenu == '2':
+        # PASSWORD CHECKER
