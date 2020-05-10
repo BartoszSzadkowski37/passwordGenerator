@@ -30,11 +30,11 @@ def generatePassword(lettersAmount, numbersAmount, charactersAmount):
     characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '=', '+', '[', '{', ']', '}', ';', ':', '"', '\'', '|', '\\', ',', '<', '.', '>', '?', '/']
     # Adding letters
     for i in range(lettersAmount):
-        password.append(letters[random.randint(0, len(letters))])
+        password.append(letters[random.randint(0, len(letters)-1)])
     for i in range(numbersAmount):
-        password.append(numbers[random.randint(0, len(numbers))])
+        password.append(numbers[random.randint(0, len(numbers)-1)])
     for i in range(charactersAmount):
-        password.append(characters[random.randint(0, len(characters))])
+        password.append(characters[random.randint(0, len(characters)-1)])
     random.shuffle(password)
     passwordFinal = ''.join(password)
     pyperclip.copy(passwordFinal)
@@ -53,7 +53,7 @@ def passwordChecker():
     if len(lettersRegex.findall(password)) < 2:
         return passwordStrong
     # checking characters 
-    charactersRegex = re.compile(r'[!@#$%&*()_-+={}:;"<,>./?|\]') #HERE there is some bug, check python regex documentation and fix it
+    charactersRegex = re.compile(r'[!@#$%^&*()_\-+={\[\]};:\'"\|<,>.?/]') 
     if len(charactersRegex.findall(password)) < 2:
         return passwordStrong
     passwordStrong = True
@@ -81,5 +81,8 @@ while inputMenu != 'EXIT' and inputMenu != '3':
         generatePassword(lettersAmount, numbersAmount, charactersAmount)
     elif inputMenu == 'PASSWORD CHECKER' or inputMenu == '2':
         # PASSWORD CHECKER
-        print(passwordChecker())
-        print('blabla')
+        strong = passwordChecker()
+        if strong == True:
+            print('Your password is strong')
+        else:
+            print('You should choose better password')
