@@ -37,10 +37,6 @@ def generatePassword(lettersAmount, numbersAmount, charactersAmount, withoutSign
         elif withoutSigns[i] in characters:
             characters.remove(withoutSigns[i])
 
-    print(letters)
-    print(numbers)
-    print(characters)
-
     # Adding letters
     for i in range(lettersAmount):
         password.append(letters[random.randint(0, len(letters)-1)])
@@ -91,7 +87,7 @@ while inputMenu != 'EXIT' and inputMenu != '3':
         lettersAmount = pyip.inputInt('How many letters would you like? ', min=2)
         numbersAmount = pyip.inputInt('How many numbers would you like? ', min=2)
         charactersAmount = pyip.inputInt('How many characters would you like?', min=2)
-        withoutSigns = pyip.inputStr('Provide signs you do not want to in your password: ')
+        withoutSigns = pyip.inputStr('Provide signs you do not want to in your password: ', blank=True)
         generatePassword(lettersAmount, numbersAmount, charactersAmount, withoutSigns)
     elif inputMenu == 'PASSWORD CHECKER' or inputMenu == '2':
         # PASSWORD CHECKER
