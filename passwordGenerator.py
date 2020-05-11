@@ -23,11 +23,24 @@
 # 2. CHECK IF IT IS STRONG
 # 3. PRINT RESULT
 
-def generatePassword(lettersAmount, numbersAmount, charactersAmount):
+def generatePassword(lettersAmount, numbersAmount, charactersAmount, withoutSigns):
     password = []
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'U', 'P', 'R', 'S', 'T', 'W', 'Y', 'Z', 'X', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z']
     numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '=', '+', '[', '{', ']', '}', ';', ':', '"', '\'', '|', '\\', ',', '<', '.', '>', '?', '/']
+    # Delete letters which user does not want to
+    for i in range(len(withoutSigns)):
+        if withoutSigns[i] in letters:
+            letters.remove(withoutSigns[i])
+        elif withoutSigns[i] in numbers:
+            numbers.remove(withoutSigns[i])
+        elif withoutSigns[i] in characters:
+            characters.remove(withoutSigns[i])
+
+    print(letters)
+    print(numbers)
+    print(characters)
+
     # Adding letters
     for i in range(lettersAmount):
         password.append(letters[random.randint(0, len(letters)-1)])
@@ -78,7 +91,8 @@ while inputMenu != 'EXIT' and inputMenu != '3':
         lettersAmount = pyip.inputInt('How many letters would you like? ', min=2)
         numbersAmount = pyip.inputInt('How many numbers would you like? ', min=2)
         charactersAmount = pyip.inputInt('How many characters would you like?', min=2)
-        generatePassword(lettersAmount, numbersAmount, charactersAmount)
+        withoutSigns = pyip.inputStr('Provide signs you do not want to in your password: ')
+        generatePassword(lettersAmount, numbersAmount, charactersAmount, withoutSigns)
     elif inputMenu == 'PASSWORD CHECKER' or inputMenu == '2':
         # PASSWORD CHECKER
         strong = passwordChecker()
